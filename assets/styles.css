@@ -60,7 +60,7 @@ body {
 /* Hero section specific styling */
 #hero {
   padding: 0;
-  min-height: calc(100vh - 72px);
+  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
 }
@@ -141,14 +141,14 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   display: grid; 
   grid-template-columns: auto 1fr auto; 
   align-items: center; 
-  height: 72px; 
-  gap: 40px; 
+  height: 80px; 
+  gap: 48px; 
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .nav {
@@ -156,10 +156,10 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   justify-content: center; 
   gap: 40px; 
 }
-.brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); font-weight: 600; }
-.brand img { width: 22px; height: 22px; }
-.nav { display: none; gap: 40px; }
-.nav a { color: #334155; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: .2px; transition: .2s; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 18px; }
+.brand img { width: 26px; height: 26px; }
+.nav { display: none; gap: 32px; }
+.nav a { color: #334155; text-decoration: none; font-size: 20px; font-weight: 600; letter-spacing: .2px; transition: .2s; }
 .nav a:hover { color: var(--accent); }
 
 @media (min-width: 768px) {
@@ -169,8 +169,9 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 12px 20px; border-radius: 14px; text-decoration: none;
-  font-weight: 600; transition: .25s ease; font-size: 15px;
+  padding: 14px 24px; border-radius: 14px; text-decoration: none;
+  font-weight: 600; transition: .25s ease; font-size: 18px;
+  white-space: nowrap;
 }
 .btn-primary { background: linear-gradient(135deg, var(--tech-blue), var(--electric-purple)); color: #fff; font-weight: 600; }
 .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,144,255,.4); }
@@ -531,7 +532,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .phone-widget {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   background: transparent;
   border: none;
   padding: 0;
@@ -540,8 +541,8 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 
 .phone-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--bold-black);
   border: none;
@@ -559,8 +560,8 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .phone-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .availability-dot {
@@ -588,12 +589,13 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .phone-number {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--bold-black);
   text-decoration: none;
   line-height: 1.2;
   transition: color 0.25s ease;
+  white-space: nowrap;
 }
 
 .phone-number:hover {
