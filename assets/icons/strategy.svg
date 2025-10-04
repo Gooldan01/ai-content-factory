@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Knight -->
+    <path d="M30 92h52a0 0 0 0 0 0 0v0a12 12 0 0 0-12-12h-8l6-14-16-10-12 10v12" fill="url(#gBluePurple)"/>
+    <circle cx="60" cy="54" r="3" fill="#111827"/>
+    <!-- Base -->
+    <path d="M26 100h60" />
+    <!-- Growth Arrow -->
+    <path d="M78 26l20 0 0 20" />
+    <path d="M98 28L76 50" stroke="url(#gPurpleBlue)"/>
+  </g>
+
+</svg>

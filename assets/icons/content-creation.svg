@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Pen nib -->
+    <path d="M74 22l32 32-22 22-32-32 22-22z" fill="url(#gBluePurple)"/>
+    <circle cx="90" cy="54" r="6" fill="#ffffff" stroke="#111827"/>
+    <!-- Play button -->
+    <circle cx="38" cy="44" r="14" fill="url(#gPurpleBlue)"/>
+    <path d="M34 36l12 8-12 8z" fill="#ffffff"/>
+    <!-- Text lines -->
+    <path d="M18 78h48"/>
+    <path d="M18 92h36"/>
+  </g>
+
+</svg>

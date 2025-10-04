@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Dots stream -->
+    <circle cx="18" cy="36" r="2.5" fill="#111827"/>
+    <circle cx="28" cy="48" r="2.5" fill="#111827"/>
+    <circle cx="22" cy="60" r="2.5" fill="#111827"/>
+    <circle cx="34" cy="70" r="2.5" fill="#111827"/>
+    <path d="M18 36 C50 36, 60 40, 78 44" stroke="url(#gBluePurple)"/>
+    <path d="M22 60 C50 60, 60 64, 78 68" stroke="url(#gBluePurple)"/>
+    <!-- Funnel -->
+    <path d="M78 40h32c4 0 6 5 4 8l-16 18v16l-12 6v-22L74 48c-2-3 0-8 4-8z" fill="url(#gPurpleBlue)"/>
+  </g>
+
+</svg>

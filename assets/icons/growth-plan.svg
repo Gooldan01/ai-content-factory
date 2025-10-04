@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Coins -->
+    <ellipse cx="34" cy="78" rx="18" ry="6" fill="url(#gBluePurple)"/>
+    <path d="M16 78v12c0 4 8 6 18 6s18-2 18-6V78" fill="url(#gBluePurple)"/>
+    <ellipse cx="34" cy="90" rx="18" ry="6" fill="none"/>
+    <!-- Trend arrow -->
+    <path d="M22 54l18-16 20 14 26-26" stroke="url(#gPurpleBlue)"/>
+    <path d="M86 20h20v20" />
+  </g>
+
+</svg>

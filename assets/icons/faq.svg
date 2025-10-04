@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Layers -->
+    <rect x="24" y="28" width="72" height="84" rx="8" fill="url(#gBluePurple)"/>
+    <rect x="36" y="20" width="72" height="84" rx="8" fill="none"/>
+    <!-- Question mark -->
+    <path d="M60 60a12 12 0 1 1 12 12v8" fill="none"/>
+    <circle cx="72" cy="94" r="3" fill="#111827"/>
+  </g>
+
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Chip body -->
+    <rect x="28" y="28" width="72" height="72" rx="10" fill="url(#gBluePurple)"/>
+    <rect x="44" y="44" width="40" height="40" rx="6" fill="none"/>
+    <!-- Pins -->
+    <path d="M44 20v12M60 20v12M76 20v12M92 20v12"/>
+    <path d="M44 96v12M60 96v12M76 96v12M92 96v12"/>
+    <path d="M20 44h12M20 60h12M20 76h12M20 92h12"/>
+    <path d="M96 44h12M96 60h12M96 76h12M96 92h12"/>
+    <!-- Spark -->
+    <path d="M94 34l4-6 4 6" stroke="url(#gPurpleBlue)"/>
+  </g>
+
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="gBluePurple" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+    <linearGradient id="gPurpleBlue" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D946EF"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+  </defs>
+  
+  <g stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Headset -->
+    <path d="M28 72v-8c0-20 16-36 36-36s36 16 36 36v8" fill="none"/>
+    <rect x="18" y="66" width="18" height="20" rx="8" fill="url(#gBluePurple)"/>
+    <rect x="92" y="66" width="18" height="20" rx="8" fill="url(#gBluePurple)"/>
+    <path d="M110 90c0 10-10 18-22 18H66" />
+    <!-- Chat bubble -->
+    <rect x="44" y="86" width="34" height="22" rx="6" fill="url(#gPurpleBlue)"/>
+    <path d="M58 108l-6 6v-6" />
+  </g>
+
+</svg>
