@@ -57,6 +57,26 @@ body {
 .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 96px 0; position: relative; }
 
+/* Unified section heights for slide-like experience */
+.section.unified-height {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.section.unified-height .container {
+  width: 100%;
+}
+
+/* Mobile: allow sections to be taller than viewport if content requires */
+@media (max-width: 768px) {
+  .section.unified-height {
+    min-height: auto;
+    padding: 80px 0;
+  }
+}
+
 /* Hero section specific styling */
 #hero {
   padding: 0;
@@ -753,6 +773,19 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .grid.five { grid-template-columns: 1fr; }
 .grid.two.middle { align-items: center; }
 
+/* Better alignment for grids in unified sections */
+.unified-height .grid {
+  margin-top: 40px;
+  align-items: stretch;
+}
+
+.unified-height .grid.three .card,
+.unified-height .grid.five .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 @media (min-width: 900px) {
   .grid.two { grid-template-columns: 1.1fr .9fr; }
   .grid.three { grid-template-columns: repeat(3, 1fr); }
@@ -796,11 +829,14 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .badge.soft { background: rgba(34,211,238,.12); color: var(--accent2); }
 
 /* Steps */
-.steps { list-style: none; padding-left: 0; margin: 0; }
+.steps { list-style: none; padding-left: 0; margin: 0; margin-top: 40px; }
 .steps .card { 
   text-align: left; 
   border-width: 2px; 
   border-color: rgba(124,92,255,.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .steps .card:hover { border-color: rgba(124,92,255,.55); }
 .steps .icon { 
@@ -1078,6 +1114,18 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   overflow: hidden;
 }
 
+.roadmap-section h1 {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.roadmap-section .sub {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
 /* Animated data lines */
 .roadmap-lines {
   position: absolute;
@@ -1090,6 +1138,16 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .dash-line {
   stroke-dasharray: 6 10;
   animation: flow 8s linear infinite;
+}
+
+.dash-line.dash-delay-1 {
+  animation: flow 10s linear infinite;
+  animation-delay: -2s;
+}
+
+.dash-line.dash-delay-2 {
+  animation: flow 12s linear infinite;
+  animation-delay: -4s;
 }
 
 @keyframes flow {
@@ -1105,6 +1163,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   gap: 20px;
   position: relative;
   z-index: 1;
+  margin-top: 40px;
 }
 
 @media (min-width: 960px) {
@@ -1304,6 +1363,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   margin-top: 48px;
+  align-items: stretch;
 }
 
 .pricing-card {

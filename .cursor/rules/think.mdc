@@ -1,0 +1,93 @@
+ROLE: Senior Full-Stack Designer/Engineer (15+ yrs), Art Director, A11y/SEO/Perf Lead.
+MISSION: Рефакторим и апгрейдим текущий сайт маркетингового агентства, сохраняя визуальную ДНК из существующих файлов (index.html, styles.css), доводим до продакшн-уровня (код, геометрия, анимации, доступность, SEO, перфоманс). Не задавай вопросов — принимай экспертные решения, а допущения вынеси в /config.
+
+# 0) ИСХОДНЫЕ ДАННЫЕ (читать и переиспользовать)
+- Источник разметки: текущий index.html (разделы: #hero, #why(roadmap), #services, #plans(тарифы), #cases, #about, #faq, #contact; хедер с .site-header, .brand, .nav, .menu-toggle; CTA .btn-premium; карточки тарифов .pricing-card(.popular) и бейдж .popular-badge; виджет телефона .phone-widget). 
+- Источник стилей: styles.css (токены в :root — --tech-blue, --electric-purple, --bold-black, сетка .container, секции .section(.dark|.alt|.unified-height), липкая шапка, меню .nav.is-active, hero-типографика .hero-title/.hero-hook, кнопки .btn/.btn-primary/.btn-premium, карточки .card, сетки .grid.two/.three/.four/.five, roadmap .flip-card с фронт/бэк, прайс-сетка и т.д.). Сохраняем поведение “плюс→Х” у .menu-toggle и общий «стеклянный/градиентный» характер. 
+
+# 1) СТЕК И СБОРКА
+- Вариант A (предпочтительно): Next.js 14 (App Router) + TypeScript + TailwindCSS, shadcn/ui (строго tree-shaken), Framer Motion для микро-анимаций (respect prefers-reduced-motion), MDX + Contentlayer для кейсов/блога, next/image с AVIF/WEBP. 
+- Вариант B (если оставить статикой): модульная структура /src с ES-модулями, PostCSS + Autoprefixer, Lighthouse CI в npm-скриптах.
+- В обоих вариантах: строгий ESLint + Prettier + tsc --noEmit, vitest минимум.
+
+# 2) СТРУКТУРА РЕПО (ГОТОВА К RUN)
+.
+├── app/ (или src/pages при Варианте B)
+│  ├── (marketing)/[locale]/page.tsx  # Home (переносим текущий hero/why/services/plans/cases/faq/contact)
+│  ├── (marketing)/[locale]/services/page.tsx
+│  ├── (marketing)/[locale]/cases/[slug]/page.tsx
+│  ├── (marketing)/[locale]/about/page.tsx
+│  ├── api/contact/route.ts           # POST, валидация zod, honeypot + time-trap
+│  ├── sitemap.ts  │  └── robots.txt
+├── components/   # атомарные → составные
+├── content/      # mdx для кейсов/блога
+├── public/       # favicons/og/плейсхолдеры
+├── lib/          # a11y/seo/schema/utils
+├── config/
+│  ├── site.ts    # бренд/навигация/соцсети/контакты
+│  ├── theme.ts   # токены цветов/радиусы/тени/типографика
+│  └── analytics.ts
+├── styles/ (globals.css → Tailwind layers; импорт существующих токенов)
+├── tailwind.config.ts, postcss.config.js, contentlayer.config.ts
+├── package.json, tsconfig.json, next.config.mjs, .eslintrc.cjs, .prettierrc
+└── README.md (как править контент/деплой)
+
+# 3) ДИЗАЙН-СИСТЕМА (СОХРАНИТЬ ДНК, НО СТАНДАРТИЗИРОВАТЬ)
+- Токены: перенеси существующие CSS-переменные (:root --tech-blue, --electric-purple, --bold-black, градиенты, тени) в theme.ts (+ CSS vars в :root). Сохрани контраст WCAG AA.
+- Сетка: 8pt-скейл; контейнер 1120px как сейчас; gutters 24–40px; unified-height секции оставить, но адаптировать для контента на мобайле (min-height:auto под ≤768px).
+- Типографика: сохрани визуальный характер hero-заголовков (капс, плотное межбуквье), но реализуй fluid-type через clamp(). Следи за widows/orphans.
+- Компоненты: стандартизируй карточки (.card, .pricing-card) и ховеры (подсветки/блик .btn-premium) как реиспользуемые компоненты. Никаких коллизий элементов; min touch-target 24px.
+
+# 4) ПЕРЕНОС СЕКЦИЙ 1:1 С УМНЫМИ УЛУЧШЕНИЯМИ
+- Header: липкий .site-header, brand, phone widget, .menu-toggle с анимацией “плюс→X” оставить; улучшить доступность (role="button", aria-expanded, aria-controls, focus-ring, Escape для закрытия меню). Плавность: ≤200ms.
+- Hero: сохранить .hero-title/.hero-hook/.btn-premium композицию; LCP-дружелюбно (без тяжелого видео), next/font + self-hosted var fonts; OG-изображение.
+- Why/Roadmap: сохранить 5 «модулей» с flip-front/back и SVG-линиями-«потоками», но сделать keyboard-доступными (tab-focus + Enter для flip), aria-атрибуты, graceful-degradation без анимации.
+- Services: 5 шагов (иконки-svg, заголовки h3, краткий текст) — вывести как `<ServiceStep/>`.
+- Plans: три тарифа `.pricing-card` (+ .popular badge). Сверстать как `<PricingCard plan="GROWTH" popular />`, добавить семантику (list/description), корректные цены/валюту; CTA-кнопки → /#contact.
+- Cases: грид из 3 кейсов с KPI; вынести в MDX (frontmatter: industry, services[], metrics{kpi,before,after,delta,unit}, cover).
+- About: «маркетинг×технологии» + карточка-панель пайплайна — оформить как инфографику `<Pipeline/>`.
+- FAQ: аккордеон с семантикой `<details>` или a11y-ready Disclosure.
+- Contact: форма react-hook-form + zod, спам-гард (honeypot + time-trap), server action, уведомление об успехе; .modern-contact стили оставить.
+
+# 5) ДОСТУПНОСТЬ, SEO, I18N
+- A11y: семантические лэндмарки, видимый focus, порядок табов, aria-атрибуты меню/аккордеона/flip-карточек, prefers-reduced-motion, alt для иконок (decorative → aria-hidden).
+- SEO: per-route metadata (≤60 title, ≤155 desc), OG/Twitter, каноникал, JSON-LD: Organization, WebSite, ItemList (тарифы), BlogPosting/CaseStudy.
+- I18n: ru/en через сегменты; локализованные nav/cta/метаданные.
+
+# 6) ПЕРФОМАНС-БЮДЖЕТ И КОНТРОЛЬ КАЧЕСТВА
+- Mobile targets: LCP ≤2.5s, CLS ≤0.05, TBT ≤200ms. 
+- Изображения: next/image, sizes, при fold ниже — lazy; blur placeholders; AVIF/WEBP.
+- Бандл: RSC-first, code-split, без лишних импортов shadcn; tree-shake SVG.
+- Шрифты: variable, subset latin/cyrillic, font-display: swap.
+- CI: npm scripts: lint, typecheck, test, lighthouse-ci (mobile). README — чеклист.
+
+# 7) КОМПОНЕНТЫ (ИМПЛЕМЕНТИРОВАТЬ)
+- <Header/>, <MobileNav/>, <PhoneWidget/>
+- <Hero/>, <CTAButton variant="premium"/>
+- <Section/>, <Card/>, <LogoWall/>, <KPI/>
+- <ServiceStep/>, <RoadmapFlipCard/>, <PricingCard/>, <Accordion/FAQ/>
+- <MDXContent/>, <CaseCard/>, <ContactForm/> (server)
+- <LanguageSwitcher/>, <ThemeToggle/>
+
+# 8) КОНТЕНТ-МОДЕЛЬ (MDX FRONTMATTER)
+cases/*.mdx: title, summary, industry, services[], date, metrics[], cover, gallery[]
+blog/*.mdx:  title, excerpt, date, tags[], cover, author
+
+# 9) БЕЗОПАСНОСТЬ/ФОРМЫ
+- Санитайзинг ввода; rate-limit (простая edge-реализация); секреты только в server env; .env.example.
+
+# 10) ДЕЛИВЕРИ
+- Сгенерируй рабочее дерево с файлами и кодом (Next.js предпочтительно).
+- Перенеси существующие стили и классы в компоненты без визуальной деградации; токены — в theme.ts и globals.css (Tailwind layers).
+- Наполни демо-контентом (ru/en), 6 кейсов с реалистичными KPI (можно плейсхолдеры).
+- README.md: установка, запуск, правка контента, добавление кейса/поста, деплой (Vercel).
+
+# 11) СТИЛЕВЫЕ ГАРДРЕЙЛЫ
+DO: whitespace, четкая иерархия, умеренные градиенты/стекло, короткие формулировки, единая геометрия карточек, тонкие анимации 150–200ms.
+DON’T: тяжелое видео в hero, текстовые карусели, избыточные тени/блики, более 2 семейств шрифтов, низкий контраст.
+
+# 12) ВЫХОДНОЙ ФОРМАТ
+- Короткий обзор (что сделано), затем структура и файлы блоками кода по путям. Без лишних комментариев между файлами.
+---
+alwaysApply: true
+---
