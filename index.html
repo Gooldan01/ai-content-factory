@@ -12,10 +12,17 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="menu-overlay" id="menuOverlay"></div>
+  
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#" class="brand"><img src="assets/favicon.svg" alt="logo" /> AI Market Factory</a>
-      <nav class="nav">
+      <div class="brand-with-toggle">
+        <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+          <span class="menu-toggle-icon"></span>
+        </button>
+        <a href="#" class="brand">AI MARKET FACTORY</a>
+      </div>
+      <nav class="nav" id="mainNav">
         <a href="#services">Услуги</a>
         <a href="#plans">Тарифы</a>
         <a href="#cases">Кейсы</a>
@@ -30,7 +37,7 @@
             </svg>
             <span class="availability-dot"></span>
           </button>
-          <a href="tel:+79154079757" class="phone-number">+7 915 407 97 57</a>
+          <a href="tel:+79154079757" class="phone-number">+7 495 555 77  22</a>
         </div>
         <a class="btn btn-primary" href="#contact">Записаться на демо</a>
       </div>
@@ -507,6 +514,38 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const body = document.body;
+    
+    function toggleMenu() {
+      menuToggle.classList.toggle('is-active');
+      mainNav.classList.toggle('is-active');
+      menuOverlay.classList.toggle('is-active');
+      body.classList.toggle('menu-open');
+    }
+    
+    function closeMenu() {
+      menuToggle.classList.remove('is-active');
+      mainNav.classList.remove('is-active');
+      menuOverlay.classList.remove('is-active');
+      body.classList.remove('menu-open');
+    }
+    
+    // Toggle menu on button click
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking on overlay
+    menuOverlay.addEventListener('click', closeMenu);
+    
+    // Close menu when clicking on links
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
     
     // Phone widget click handler
     document.addEventListener('DOMContentLoaded', function() {
