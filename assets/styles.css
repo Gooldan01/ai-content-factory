@@ -84,6 +84,18 @@ body {
   display: flex;
   align-items: center;
 }
+
+/* Why section - control spacing */
+#why {
+  padding-top: 80px;
+  padding-bottom: 10px;
+  scroll-margin-top: 80px;
+}
+
+/* Services section - reduce top padding */
+#services {
+  padding-top: 10px;
+}
 /* Чередование фонов */
 .section.alt { background: linear-gradient(180deg, rgba(124,92,255,0.05) 0%, rgba(34,211,238,0.05) 100%); }
 
@@ -309,7 +321,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   align-items: center;
   gap: 0;
   position: fixed;
-  left: calc(50% - 280px);
+  left: 20px;
   top: 80px;
   transform: translateY(-100%);
   background: 
@@ -421,6 +433,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .nav.is-active a:nth-child(3) { transition-delay: 0.2s; }
 .nav.is-active a:nth-child(4) { transition-delay: 0.25s; }
 .nav.is-active a:nth-child(5) { transition-delay: 0.3s; }
+.nav.is-active a:nth-child(6) { transition-delay: 0.35s; }
 
 /* Background gradient on hover */
 .nav a::after {
@@ -477,7 +490,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .nav {
-    left: calc(50% - 260px);
+    left: 20px;
   }
   
   .nav a {
@@ -612,7 +625,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 /* Desktop adjustments - optimal viewing */
 @media (min-width: 1400px) {
   .nav {
-    left: calc(50% - 300px);
+    left: calc(50% - 395px);
   }
   
   .nav a {
@@ -1333,6 +1346,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   position: relative;
   z-index: 1;
   margin-top: 40px;
+  transform: translateY(-20px);
 }
 
 @media (min-width: 960px) {
