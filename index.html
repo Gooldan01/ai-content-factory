@@ -333,7 +333,7 @@
               <span class="price-unit">₽ / месяц</span>
             </div>
             <div class="plan-description">
-              
+              Для онлайн-школ и e-commerce. Полный цикл производства контента.
             </div>
             
             <div class="features-list">
@@ -769,6 +769,53 @@
             subtitle.classList.add('highlighted');
           }
         }
+      }
+    });
+    
+    // Hero parallax effect (Saatchi-style)
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          const heroSection = document.getElementById('hero');
+          const heroTitle = document.querySelector('.hero-title');
+          const heroHook = document.querySelector('.hero-hook');
+          const heroButton = document.querySelector('.hero-cta-wrapper');
+          
+          if (heroSection && heroTitle) {
+            const scrolled = window.pageYOffset;
+            const heroHeight = heroSection.offsetHeight;
+            
+            // Only apply parallax while hero is visible
+            if (scrolled < heroHeight) {
+              const parallaxSpeed1 = scrolled * 0.5;
+              const parallaxSpeed2 = scrolled * 0.3;
+              const parallaxSpeed3 = scrolled * 0.2;
+              
+              heroTitle.style.transform = `translateY(${parallaxSpeed1}px)`;
+              if (heroHook) {
+                heroHook.style.transform = `translateY(${parallaxSpeed2}px)`;
+              }
+              if (heroButton) {
+                heroButton.style.transform = `translateY(${parallaxSpeed3}px)`;
+              }
+              
+              // Fade out effect
+              const opacity = 1 - (scrolled / heroHeight) * 1.5;
+              heroTitle.style.opacity = Math.max(0, opacity);
+              if (heroHook) {
+                heroHook.style.opacity = Math.max(0, opacity);
+              }
+              if (heroButton) {
+                heroButton.style.opacity = Math.max(0, opacity);
+              }
+            }
+          }
+          
+          ticking = false;
+        });
+        
+        ticking = true;
       }
     });
   </script>
