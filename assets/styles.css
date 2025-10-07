@@ -1675,14 +1675,14 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  margin-top: 48px;
+  margin-top: 60px;
   align-items: stretch;
 }
 
 .pricing-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 32px;
+  padding: 50px 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid #f0f0f0;
   position: relative;
@@ -1690,6 +1690,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   display: flex;
   flex-direction: column;
   height: 100%;
+  text-align: center;
 }
 
 .pricing-card:hover {
@@ -1698,33 +1699,35 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .pricing-card.popular {
-  border: 2px solid #FF6B35;
-  transform: scale(1.02);
+  border: 3px solid #FF6B35;
 }
 
 .pricing-card.popular:hover {
-  transform: scale(1.02) translateY(-4px);
+  transform: translateY(-4px);
 }
 
 .plan-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .plan-title {
   font-family: 'Adventure Indiana', 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #000;
   background: #fff;
-  border: 1px solid #000;
-  padding: 8px 16px;
+  border: 2px solid #000;
+  padding: 10px 16px;
   border-radius: 8px;
-  display: inline-block;
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .popular-badge {
@@ -1732,14 +1735,22 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   color: #fff;
   font-size: 12px;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 8px 16px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  position: absolute;
+  top: -70px;
+  left: auto;
+  right: 18px;
+  transform: none;
+  z-index: 10;
+  white-space: nowrap;
 }
 
 .plan-price {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .price-amount {
@@ -1747,8 +1758,9 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   font-size: 48px;
   font-weight: 800;
   color: #000;
-  line-height: 1;
+  line-height: 1.1;
   display: block;
+  margin-bottom: 4px;
 }
 
 .price-unit {
@@ -1762,19 +1774,23 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   font-size: 16px;
   color: #333;
   line-height: 1.5;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+  padding: 0;
 }
 
 .features-list {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  text-align: left;
 }
 
 .feature-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: flex-start;
+  margin-bottom: 14px;
   font-size: 15px;
   color: #333;
+  line-height: 1.4;
 }
 
 .feature-item:last-child {
@@ -1782,7 +1798,8 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .feature-icon {
-  margin-right: 12px;
+  margin-right: 10px;
+  margin-top: 2px;
   flex-shrink: 0;
 }
 
@@ -1790,28 +1807,65 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   border: 2px dashed #FF6B35;
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 24px;
+  margin: auto 0 20px 0;
   background: rgba(255, 107, 53, 0.02);
+  text-align: left;
 }
+
+.additional-section .feature-item {
+  margin-bottom: 20px;
+}
+
+.additional-section .feature-item:last-child {
+  margin-bottom: 50px;
+}
+
+/* ============================================
+   ИНДИВИДУАЛЬНАЯ НАСТРОЙКА ДОПОЛНИТЕЛЬНЫХ СЕКЦИЙ
+   ============================================ */
+
+/* Вторая карточка (ТРИУМВИРАТ) */
+.pricing-card:nth-child(2) .additional-section {
+  min-height: auto;        /* Минимальная высота: auto, 200px, 250px и т.д. */
+  padding: 20px;           /* Внутренние отступы */
+  margin-top: auto;        /* Отступ сверху: 0, 20px, auto и т.д. */
+}
+
+/* Третья карточка (СИЛА ИИ) */
+.pricing-card:nth-child(3) .additional-section {
+  min-height: auto;        /* Минимальная высота: auto, 200px, 250px и т.д. */
+  padding: 20px;           /* Внутренние отступы */
+  margin-top: auto;        /* Отступ сверху: 0, 20px, auto и т.д. */
+}
+
+/* ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ:
+   - Чтобы растянуть секцию вниз: margin-top: auto;
+   - Чтобы зафиксировать высоту: min-height: 250px;
+   - Чтобы увеличить внутренние отступы: padding: 30px;
+   - Чтобы сдвинуть вниз: margin-top: 40px;
+*/
 
 .additional-title {
   font-family: 'Adventure Indiana', 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: #000;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
 .plan-footer {
   margin-top: auto;
-  padding-top: 24px;
+  padding-top: 20px;
 }
 
 .testimonial {
   font-size: 13px;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-style: italic;
+  padding: 0;
+  line-height: 1.4;
 }
 
 .plan-button {
@@ -1819,18 +1873,21 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   background: #000;
   color: #fff;
   border: none;
-  padding: 16px 24px;
+  padding: 15px 24px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Cakra', 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .plan-button:hover {
   background: #333;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Mobile responsiveness */
