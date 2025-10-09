@@ -2106,10 +2106,32 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   height: 450px;
 }
 
+/* Global grid overlay for all slides */
+.gallery-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    transparent;
+  background-size:
+    44px 44px,
+    44px 44px,
+    11px 11px,
+    11px 11px;
+  background-position: 0 0;
+  z-index: 0;
+}
+
 .gallery-slides {
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .gallery-slide {
@@ -2147,8 +2169,19 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   z-index: 2;
 }
 
+/* Ensure slide content always sits above any local overlays */
+.gallery-slide .slide-content { z-index: 2; position: relative; }
+
+/* Safety: force visibility of key text elements on all slides */
+.gallery-slide .slide-number,
+.gallery-slide .slide-title,
+.gallery-slide .slide-description {
+  opacity: 1 !important;
+  color: #000 !important;
+}
+
 .gallery-slide.active .slide-content {
-  animation: slideContentFadeIn 0.8s ease-out 0.2s both;
+  animation: slideContentFadeIn 0.6s ease-out 0.05s both;
 }
 
 @keyframes slideContentFadeIn {
@@ -2241,11 +2274,11 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid rgba(124, 92, 255, 0.2);
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2253,15 +2286,14 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   transition: all 0.3s ease;
   z-index: 10;
   color: #7C5CFF;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .gallery-nav:hover {
-  background: #7C5CFF;
-  color: #ffffff;
-  border-color: #7C5CFF;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.4);
+  background: transparent;
+  color: #5A3FFF;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: none;
 }
 
 .gallery-nav:active {
@@ -2370,8 +2402,8 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   }
 
   .gallery-nav {
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
   }
 
   .gallery-nav svg {
@@ -2434,8 +2466,8 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   }
 
   .gallery-nav {
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
   }
 
   .gallery-prev {
@@ -2456,36 +2488,29 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .blueprint-slide::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
-    #f8fcff;
-  background-size:
-    44px 44px,
-    44px 44px,
-    11px 11px,
-    11px 11px;
-  background-position: 0 0;
-  z-index: 0;
+  display: none;
 }
+
+/* Grid background per slide (not needed now that container has it) */
+.grid-bg { position: relative; }
 
 .blueprint-slide .slide-content {
   position: relative;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Ensure blueprint text elements are always visible */
+.blueprint-slide .blueprint-badge,
+.blueprint-slide .blueprint-title,
+.blueprint-slide .blueprint-desc {
+  color: #000 !important;
+  opacity: 1 !important;
 }
 
 /* Blueprint grid overlay */
 .blueprint-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 0;
-  display: block;
+  display: none;
 }
 
 /* Blueprint Icon */
@@ -2591,7 +2616,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 /* Approval Stamp */
 .approval-stamp {
   position: absolute;
-  top: 48%;
+  top: 40%;
   right: 40px;
   transform: translateY(-50%);
   z-index: 100;
@@ -2633,6 +2658,35 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .stamp-approved::before {
   border-color: #00a86b;
 }
+
+/* Additional stamp styles */
+.stamp-brief {
+  color: #1f2937; /* gray-800 */
+  border-color: #1f2937;
+  background: linear-gradient(135deg, rgba(31,41,55,.06), rgba(31,41,55,.12));
+}
+.stamp-brief::before { border-color: #1f2937; }
+
+.stamp-prep {
+  color: #2563eb; /* blue-600 */
+  border-color: #2563eb;
+  background: linear-gradient(135deg, rgba(37,99,235,.06), rgba(37,99,235,.12));
+}
+.stamp-prep::before { border-color: #2563eb; }
+
+.stamp-live {
+  color: #7c3aed; /* violet-600 */
+  border-color: #7c3aed;
+  background: linear-gradient(135deg, rgba(124,58,237,.06), rgba(124,58,237,.12));
+}
+.stamp-live::before { border-color: #7c3aed; }
+
+.stamp-report {
+  color: #16a34a; /* green-600 */
+  border-color: #16a34a;
+  background: linear-gradient(135deg, rgba(22,163,74,.06), rgba(22,163,74,.12));
+}
+.stamp-report::before { border-color: #16a34a; }
 
 
 /* Mobile responsiveness for blueprint */
