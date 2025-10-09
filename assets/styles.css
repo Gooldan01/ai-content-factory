@@ -2103,14 +2103,13 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
     0 8px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  min-height: 500px;
+  height: 450px;
 }
 
 .gallery-slides {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 500px;
 }
 
 .gallery-slide {
@@ -2126,7 +2125,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px;
+  padding: 30px 40px;
 }
 
 .gallery-slide.active {
@@ -2143,7 +2142,13 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 .slide-content {
   text-align: center;
   max-width: 700px;
-  animation: slideContentFadeIn 0.8s ease-out 0.3s both;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.gallery-slide.active .slide-content {
+  animation: slideContentFadeIn 0.8s ease-out 0.2s both;
 }
 
 @keyframes slideContentFadeIn {
@@ -2158,9 +2163,9 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 }
 
 .slide-icon {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 24px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2171,7 +2176,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   transition: all 0.4s ease;
 }
 
-.gallery-slide.active .slide-icon {
+.gallery-slide.active .slide-icon:not(.blueprint-icon) {
   animation: iconPulse 2s ease-in-out infinite;
 }
 
@@ -2201,19 +2206,19 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 
 .slide-title {
   font-family: 'Adventure Indiana', 'Roboto', sans-serif;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 800;
   color: var(--bold-black);
-  margin: 16px 0;
+  margin: 12px 0;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .slide-description {
-  font-size: 20px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.5;
   color: var(--muted);
-  margin: 24px 0 32px;
+  margin: 16px 0 0;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -2326,16 +2331,12 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .gallery-container {
-    min-height: 600px;
+    height: 520px;
     border-radius: 16px;
   }
 
-  .gallery-slides {
-    min-height: 600px;
-  }
-
   .gallery-slide {
-    padding: 40px 24px 80px;
+    padding: 25px 24px 70px;
   }
 
   .slide-icon {
@@ -2407,15 +2408,11 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   }
 
   .gallery-container {
-    min-height: 550px;
-  }
-
-  .gallery-slides {
-    min-height: 550px;
+    height: 500px;
   }
 
   .gallery-slide {
-    padding: 30px 20px 70px;
+    padding: 20px 20px 65px;
   }
 
   .slide-icon {
@@ -2447,5 +2444,223 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 
   .gallery-next {
     right: 8px;
+  }
+}
+
+/* ============================================
+   BLUEPRINT SLIDE - ENGINEERING STYLE
+   ============================================ */
+
+.blueprint-slide {
+  position: relative;
+}
+
+.blueprint-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    #f8fcff;
+  background-size:
+    44px 44px,
+    44px 44px,
+    11px 11px,
+    11px 11px;
+  background-position: 0 0;
+  z-index: 0;
+}
+
+.blueprint-slide .slide-content {
+  position: relative;
+}
+
+/* Blueprint grid overlay */
+.blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+  display: block;
+}
+
+/* Blueprint Icon */
+.blueprint-icon { display: none !important; }
+
+.blueprint-icon::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px dashed #0078c8;
+  opacity: 0.4;
+  border-radius: 50%;
+}
+
+.blueprint-icon svg {
+  filter: drop-shadow(0 0 2px rgba(0, 120, 200, 0.3));
+}
+
+.blueprint-slide:hover .blueprint-icon {
+  background: linear-gradient(135deg, rgba(0, 120, 200, 0.1), rgba(0, 150, 255, 0.15)) !important;
+  box-shadow: 
+    0 0 0 6px rgba(0, 120, 200, 0.15),
+    0 0 30px rgba(0, 120, 200, 0.4) !important;
+}
+
+.blueprint-slide.active .blueprint-icon {
+  animation: none !important;
+}
+
+/* Blueprint Badge */
+.blueprint-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  border-radius: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 10px 28px !important;
+  text-transform: uppercase;
+  box-shadow: 0 2px 0 #000000, 0 8px 20px rgba(0,0,0,.08);
+}
+
+/* Ticket-style perforated cuts */
+.blueprint-badge::before,
+.blueprint-badge::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #f8fcff;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.blueprint-badge::before { left: -6px; }
+.blueprint-badge::after  { right: -6px; }
+
+/* Subtle dashed inner border */
+.blueprint-badge span { position: relative; z-index: 1; }
+.blueprint-badge {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 2px, transparent 2px 6px);
+  background-size: 100% 100%;
+}
+
+/* Blueprint Title */
+.blueprint-title {
+  color: #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  position: relative;
+  font-size: 40px !important;
+}
+
+.blueprint-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #000000, transparent);
+}
+
+/* Blueprint Description */
+.blueprint-desc {
+  color: #000000 !important;
+  font-family: 'Courier New', monospace;
+  font-size: 19px !important;
+  letter-spacing: 0.5px;
+  line-height: 1.4 !important;
+}
+
+/* Timeline Arrows - Removed */
+
+/* Approval Stamp */
+.approval-stamp {
+  position: absolute;
+  top: 48%;
+  right: 40px;
+  transform: translateY(-50%);
+  z-index: 100;
+  opacity: 1;
+  transition: none;
+  pointer-events: none;
+}
+
+.blueprint-slide:hover .approval-stamp { opacity: 1; transform: translateY(-50%); }
+
+.stamp {
+  font-family: 'Courier New', monospace;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 8px 16px;
+  border: 3px solid;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  transform: rotate(-5deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.stamp::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px dashed;
+  border-radius: 6px;
+  opacity: 0.5;
+}
+
+.stamp-approved {
+  color: #00a86b;
+  border-color: #00a86b;
+  background: linear-gradient(135deg, rgba(0, 168, 107, 0.05), rgba(0, 168, 107, 0.1));
+}
+
+.stamp-approved::before {
+  border-color: #00a86b;
+}
+
+
+/* Mobile responsiveness for blueprint */
+@media (max-width: 768px) {
+  .approval-stamp {
+    top: auto;
+    bottom: 100px;
+    right: 20px;
+    transform: translateX(30px);
+  }
+  
+  .blueprint-slide:hover .approval-stamp {
+    transform: translateX(0);
+  }
+
+  .stamp {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .approval-stamp {
+    bottom: 80px;
+    right: 10px;
+  }
+
+  .blueprint-desc {
+    font-size: 14px !important;
   }
 }
