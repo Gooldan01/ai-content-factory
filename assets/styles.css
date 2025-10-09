@@ -2057,3 +2057,374 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
       0 12px 60px rgba(124, 92, 255, 0.3);
   }
 }
+
+/* ============================================
+   SERVICES GALLERY WIDGET
+   ============================================ */
+
+.services-gallery {
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  min-height: 500px;
+}
+
+.gallery-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.gallery-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+}
+
+.gallery-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.gallery-slide.prev {
+  transform: translateX(-100%);
+}
+
+.slide-content {
+  text-align: center;
+  max-width: 700px;
+  animation: slideContentFadeIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.15), rgba(34, 211, 238, 0.15));
+  border-radius: 50%;
+  color: #7C5CFF;
+  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.gallery-slide.active .slide-icon {
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(124, 92, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(124, 92, 255, 0.3);
+  }
+}
+
+.slide-number {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7C5CFF;
+  background: rgba(124, 92, 255, 0.1);
+  padding: 8px 20px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.slide-title {
+  font-family: 'Adventure Indiana', 'Roboto', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--bold-black);
+  margin: 16px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.slide-description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 24px 0 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide-tag {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1E90FF, #8A2BE2);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
+  margin-top: 16px;
+}
+
+/* Navigation Arrows */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(124, 92, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: #7C5CFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-nav:hover {
+  background: #7C5CFF;
+  color: #ffffff;
+  border-color: #7C5CFF;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.4);
+}
+
+.gallery-nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.gallery-prev {
+  left: 20px;
+}
+
+.gallery-next {
+  right: 20px;
+}
+
+/* Progress Indicators */
+.gallery-indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(124, 92, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator:hover {
+  background: rgba(124, 92, 255, 0.6);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: #7C5CFF;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* Progress Bar */
+.gallery-progress {
+  display: none; /* Hidden as requested */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(124, 92, 255, 0.1);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #1E90FF, #7C5CFF, #8A2BE2);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .gallery-container {
+    min-height: 600px;
+    border-radius: 16px;
+  }
+
+  .gallery-slides {
+    min-height: 600px;
+  }
+
+  .gallery-slide {
+    padding: 40px 24px 80px;
+  }
+
+  .slide-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+
+  .slide-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slide-number {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+
+  .slide-title {
+    font-size: 32px;
+  }
+
+  .slide-description {
+    font-size: 16px;
+    margin: 16px 0 24px;
+  }
+
+  .slide-tag {
+    font-size: 12px;
+    padding: 8px 20px;
+  }
+
+  .gallery-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .gallery-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .gallery-prev {
+    left: 12px;
+  }
+
+  .gallery-next {
+    right: 12px;
+  }
+
+  .gallery-indicators {
+    bottom: 16px;
+    gap: 8px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .indicator.active {
+    width: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-gallery {
+    margin-top: 40px;
+  }
+
+  .gallery-container {
+    min-height: 550px;
+  }
+
+  .gallery-slides {
+    min-height: 550px;
+  }
+
+  .gallery-slide {
+    padding: 30px 20px 70px;
+  }
+
+  .slide-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .slide-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .slide-title {
+    font-size: 28px;
+  }
+
+  .slide-description {
+    font-size: 15px;
+  }
+
+  .gallery-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery-prev {
+    left: 8px;
+  }
+
+  .gallery-next {
+    right: 8px;
+  }
+}
