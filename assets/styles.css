@@ -102,6 +102,28 @@ body {
   scroll-margin-top: 80px;
 }
 
+/* Centered sections alignment */
+#why .container,
+#services .container {
+  text-align: center;
+}
+
+#why h1,
+#services h1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+#why .sub,
+#services .sub {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+
 /* Services section - reduce top padding */
 #services {
   padding-top: 10px;
@@ -1412,8 +1434,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   gap: 24px;
   position: relative;
   z-index: 1;
-  margin-top: 40px;
-  transform: translateY(-20px);
+  margin-top: 60px;
 }
 
 @media (min-width: 960px) {
