@@ -6,9 +6,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   <title>AI Marketing Factory — маркетинг-завод на базе ИИ</title>
   <meta name="description" content="Сценарий → генерация → монтаж → постинг. Поток контента для инфобизнеса и e‑commerce по подписке." />
   <link rel="icon" href="assets/favicon.svg" />
+  <link rel="preload" href="assets/styles.css" as="style" />
+  <link rel="preload" href="fonts/Cakra-Normal.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="fonts/ofont.ru_Adventure Indiana.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
@@ -32,8 +38,8 @@
       </nav>
       <div class="header-actions">
         <div class="phone-widget">
-          <button class="phone-btn" onclick="window.location.href='tel:+79154079757'">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="window.location.href='tel:+79154079757'">
+          <button class="phone-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span class="availability-dot"></span>
@@ -83,7 +89,7 @@
             <div class="card-header">
               <div class="step-tag">Эволюция</div>
               <div class="step-icon">
-                <img src="assets/icons/technology.svg" alt="Технология" />
+                <img src="assets/icons/technology.svg" alt="Технология" loading="lazy" decoding="async" width="40" height="40" />
               </div>
             </div>
             <div class="card-content">
@@ -108,7 +114,7 @@
             <div class="card-header">
               <div class="step-tag">Скорость</div>
               <div class="step-icon">
-                <img src="assets/icons/content-creation.svg" alt="Создание контента" />
+                <img src="assets/icons/content-creation.svg" alt="Создание контента" loading="lazy" decoding="async" width="40" height="40" />
               </div>
             </div>
             <div class="card-content">
@@ -133,7 +139,7 @@
             <div class="card-header">
               <div class="step-tag">Perpetual</div>
               <div class="step-icon">
-                <img src="assets/icons/data-flow.svg" alt="Поток данных" />
+                <img src="assets/icons/data-flow.svg" alt="Поток данных" loading="lazy" decoding="async" width="40" height="40" />
               </div>
             </div>
             <div class="card-content">
@@ -158,7 +164,7 @@
             <div class="card-header">
               <div class="step-tag">Fixed</div>
               <div class="step-icon">
-                <img src="assets/icons/unified.svg" alt="Стратегия" />
+                <img src="assets/icons/unified.svg" alt="Стратегия" loading="lazy" decoding="async" width="40" height="40" />
               </div>
             </div>
             <div class="card-content">
@@ -183,7 +189,7 @@
             <div class="card-header">
               <div class="step-tag">Аналитика</div>
               <div class="step-icon">
-                <img src="assets/icons/growth-plan.svg" alt="План роста" />
+                <img src="assets/icons/growth-plan.svg" alt="План роста" loading="lazy" decoding="async" width="40" height="40" />
               </div>
             </div>
             <div class="card-content">
@@ -571,7 +577,7 @@
       <div class="container narrow center">
         <h1>Готовы построить свой маркетинг - завод?</h1>
         <p class="sub">Начните с бесплатной консультации и узнайте, как ИИ может трансформировать ваш маркетинг</p>
-        <form class="card form modern-contact" action="#" method="post" onsubmit="alert('Форма демо. Подключим отправку позже.'); return false;">
+        <form class="card form modern-contact" action="#" method="post">
           <div class="grid two">
             <input class="input" id="name" name="name" placeholder="Имя" required />
             <input class="input" id="contact" name="contact" placeholder="Телефон / Email / Telegram" required />
@@ -587,7 +593,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <div class="brand-logo">
-          <img src="assets/favicon.svg" alt="AI Market Factory" />
+          <img src="assets/favicon.svg" alt="AI Market Factory" loading="lazy" decoding="async" width="32" height="32" />
           <span>AI Market Factory</span>
         </div>
         <p class="footer-description">Автоматизированный маркетинг-завод на базе ИИ. От трендвотчинга до готового контента.</p>
@@ -652,424 +658,6 @@
   <!-- Back to top button -->
   <button id="toTop" class="to-top" aria-label="Наверх" title="Наверх">▲</button>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    
-    // Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const body = document.body;
-    
-    function toggleMenu() {
-      menuToggle.classList.toggle('is-active');
-      mainNav.classList.toggle('is-active');
-      menuOverlay.classList.toggle('is-active');
-      body.classList.toggle('menu-open');
-    }
-    
-    function closeMenu() {
-      menuToggle.classList.remove('is-active');
-      mainNav.classList.remove('is-active');
-      menuOverlay.classList.remove('is-active');
-      body.classList.remove('menu-open');
-    }
-    
-    // Toggle menu on button click
-    menuToggle.addEventListener('click', toggleMenu);
-    
-    // Close menu when clicking on overlay
-    menuOverlay.addEventListener('click', closeMenu);
-    
-    // Close menu when clicking on links
-    const navLinks = mainNav.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-    
-    // Phone widget click handler
-    document.addEventListener('DOMContentLoaded', function() {
-      const phoneBtn = document.querySelector('.phone-btn');
-      const phoneNumber = document.querySelector('.phone-number');
-      
-      function makeCall() {
-        window.location.href = 'tel:+79154079757';
-      }
-      
-      if (phoneBtn) {
-        phoneBtn.addEventListener('click', makeCall);
-        // Also handle clicks on SVG inside the button
-        const phoneSvg = phoneBtn.querySelector('svg');
-        if (phoneSvg) {
-          phoneSvg.addEventListener('click', makeCall);
-        }
-      }
-      
-      if (phoneNumber) {
-        phoneNumber.addEventListener('click', function(e) {
-          e.preventDefault();
-          makeCall();
-        });
-      }
-    });
-    
-    // Hero section viewport optimization
-    function optimizeHeroHeight() {
-      const heroSection = document.querySelector('#hero');
-      const heroCenter = document.querySelector('.hero-center');
-      
-      if (heroSection && heroCenter) {
-        const headerHeight = 80;
-        const viewportHeight = window.innerHeight;
-        const availableHeight = viewportHeight - headerHeight;
-        
-        // Calculate content height
-        const contentHeight = heroCenter.scrollHeight;
-        
-        // Set hero section to fill viewport
-        heroSection.style.minHeight = availableHeight + 'px';
-        
-        // Center content vertically within the hero section
-        heroCenter.style.minHeight = 'auto';
-        heroCenter.style.paddingTop = '60px';
-        heroCenter.style.paddingBottom = '60px';
-        
-        // If content is too tall for viewport, adjust padding
-        if (contentHeight + 120 > availableHeight) {
-          heroCenter.style.paddingTop = '20px';
-          heroCenter.style.paddingBottom = '20px';
-        }
-      }
-    }
-    
-    // Run on load and resize
-    window.addEventListener('load', optimizeHeroHeight);
-    window.addEventListener('resize', optimizeHeroHeight);
-    
-    (function () {
-      const tabs = document.querySelectorAll('.tabs .tab');
-      const panes = document.querySelectorAll('.tab-panes .pane');
-      if (!tabs.length) return;
-      function activate(tab) {
-        tabs.forEach(t => t.classList.toggle('is-active', t === tab));
-        panes.forEach(p => p.classList.toggle('is-active', p.id === tab.dataset.tab));
-      }
-      const initial = document.querySelector('.tabs .tab.is-active') || tabs[0];
-      requestAnimationFrame(() => activate(initial));
-      tabs.forEach(tab => tab.addEventListener('click', () => activate(tab)));
-    })();
-
-    // Back to top button - enhanced version
-    document.addEventListener('DOMContentLoaded', function() {
-      const btn = document.getElementById('toTop');
-      if (!btn) return;
-      
-      // Show/hide button based on scroll
-      function updateButton() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        if (scrollTop > 300) {
-          btn.classList.add('is-visible');
-        } else {
-          btn.classList.remove('is-visible');
-        }
-      }
-      
-      // Listen for scroll events
-      window.addEventListener('scroll', updateButton, { passive: true });
-      
-      // Initial check
-      updateButton();
-      
-      // Click handler
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    });
-    
-    // Scroll highlight effect for Why section subtitle
-    window.addEventListener('scroll', function() {
-      const whySection = document.getElementById('why');
-      
-      if (whySection) {
-        const subtitle = whySection.querySelector('.sub');
-        
-        if (subtitle) {
-          const rect = whySection.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          // Check if section is in viewport (when it enters the screen)
-          if (rect.top < windowHeight * 0.3 && rect.bottom > windowHeight * 0.7) {
-            subtitle.classList.add('highlighted');
-          } else {
-            subtitle.classList.remove('highlighted');
-          }
-        }
-      }
-    });
-    
-    // Also trigger on page load in case section is already visible
-    window.addEventListener('load', function() {
-      const whySection = document.getElementById('why');
-      
-      if (whySection) {
-        const subtitle = whySection.querySelector('.sub');
-        
-        if (subtitle) {
-          const rect = whySection.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          if (rect.top < windowHeight * 0.3 && rect.bottom > windowHeight * 0.7) {
-            subtitle.classList.add('highlighted');
-          }
-        }
-      }
-    });
-    
-    // Hero parallax effect (Saatchi-style)
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          const heroSection = document.getElementById('hero');
-          const heroTitle = document.querySelector('.hero-title');
-          const heroHook = document.querySelector('.hero-hook');
-          const heroButton = document.querySelector('.hero-cta-wrapper');
-          
-          if (heroSection && heroTitle) {
-            const scrolled = window.pageYOffset;
-            const heroHeight = heroSection.offsetHeight;
-            
-            // Only apply parallax while hero is visible
-            if (scrolled < heroHeight) {
-              const parallaxSpeed1 = scrolled * 0.5;
-              const parallaxSpeed2 = scrolled * 0.3;
-              const parallaxSpeed3 = scrolled * 0.2;
-              
-              heroTitle.style.transform = `translateY(${parallaxSpeed1}px)`;
-              if (heroHook) {
-                heroHook.style.transform = `translateY(${parallaxSpeed2}px)`;
-              }
-              if (heroButton) {
-                heroButton.style.transform = `translateY(${parallaxSpeed3}px)`;
-              }
-              
-              // Fade out effect
-              const opacity = 1 - (scrolled / heroHeight) * 1.5;
-              heroTitle.style.opacity = Math.max(0, opacity);
-              if (heroHook) {
-                heroHook.style.opacity = Math.max(0, opacity);
-              }
-              if (heroButton) {
-                heroButton.style.opacity = Math.max(0, opacity);
-              }
-            }
-          }
-          
-          ticking = false;
-        });
-        
-        ticking = true;
-      }
-    });
-    
-    // Services Gallery Widget
-    (function() {
-      const gallery = document.querySelector('.services-gallery');
-      if (!gallery) return;
-      
-      const slides = gallery.querySelectorAll('.gallery-slide');
-      const indicators = gallery.querySelectorAll('.indicator');
-      const prevBtn = gallery.querySelector('.gallery-prev');
-      const nextBtn = gallery.querySelector('.gallery-next');
-      const progressBar = gallery.querySelector('.progress-bar');
-      
-      let currentSlide = 0;
-      let autoPlayInterval = null;
-      let progressInterval = null;
-      const autoPlayDelay = 12000; // 12 seconds
-      const progressUpdateInterval = 50; // Update progress every 50ms
-      
-      function showSlide(index) {
-        // Remove active class from all slides and indicators
-        slides.forEach(slide => {
-          slide.classList.remove('active', 'prev');
-        });
-        indicators.forEach(ind => ind.classList.remove('active'));
-        
-        // Set prev class for slide transition
-        if (currentSlide !== index) {
-          slides[currentSlide].classList.add('prev');
-        }
-        
-        // Add active class to current slide and indicator
-        currentSlide = index;
-        slides[currentSlide].classList.add('active');
-        indicators[currentSlide].classList.add('active');
-        
-        // Reset progress bar
-        resetProgressBar();
-      }
-      
-      function nextSlide() {
-        const next = (currentSlide + 1) % slides.length;
-        showSlide(next);
-      }
-      
-      function prevSlide() {
-        const prev = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(prev);
-      }
-      
-      function resetProgressBar() {
-        if (progressBar) {
-          progressBar.style.width = '0%';
-        }
-        
-        // Clear existing progress interval
-        if (progressInterval) {
-          clearInterval(progressInterval);
-        }
-        
-        // Start new progress animation
-        let progress = 0;
-        const increment = (100 / autoPlayDelay) * progressUpdateInterval;
-        
-        progressInterval = setInterval(() => {
-          progress += increment;
-          if (progressBar) {
-            progressBar.style.width = Math.min(progress, 100) + '%';
-          }
-          if (progress >= 100) {
-            clearInterval(progressInterval);
-          }
-        }, progressUpdateInterval);
-      }
-      
-      function startAutoPlay() {
-        stopAutoPlay(); // Clear any existing interval
-        resetProgressBar();
-        autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
-      }
-      
-      function stopAutoPlay() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval);
-          autoPlayInterval = null;
-        }
-        if (progressInterval) {
-          clearInterval(progressInterval);
-          progressInterval = null;
-        }
-      }
-      
-      function restartAutoPlay() {
-        stopAutoPlay();
-        startAutoPlay();
-      }
-      
-      // Event listeners for navigation buttons
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          prevSlide();
-          restartAutoPlay();
-        });
-      }
-      
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          nextSlide();
-          restartAutoPlay();
-        });
-      }
-      
-      // Event listeners for indicators
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-          showSlide(index);
-          restartAutoPlay();
-        });
-      });
-      
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        // Only respond if gallery is in viewport
-        const rect = gallery.getBoundingClientRect();
-        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (!isInViewport) return;
-        
-        if (e.key === 'ArrowLeft') {
-          prevSlide();
-          restartAutoPlay();
-        } else if (e.key === 'ArrowRight') {
-          nextSlide();
-          restartAutoPlay();
-        }
-      });
-      
-      // Pause autoplay when user hovers over gallery
-      gallery.addEventListener('mouseenter', stopAutoPlay);
-      gallery.addEventListener('mouseleave', startAutoPlay);
-      
-      // Pause autoplay when page is not visible
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stopAutoPlay();
-        } else {
-          startAutoPlay();
-        }
-      });
-      
-      // Touch/swipe support for mobile
-      let touchStartX = 0;
-      let touchEndX = 0;
-      
-      gallery.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoPlay();
-      }, { passive: true });
-      
-      gallery.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startAutoPlay();
-      }, { passive: true });
-      
-      function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-          if (diff > 0) {
-            // Swipe left - next slide
-            nextSlide();
-          } else {
-            // Swipe right - prev slide
-            prevSlide();
-          }
-        }
-      }
-      
-      // Initialize gallery
-      showSlide(0);
-      
-      // Start autoplay when gallery enters viewport
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            startAutoPlay();
-          } else {
-            stopAutoPlay();
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      observer.observe(gallery);
-    })();
-  </script>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>

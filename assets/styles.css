@@ -4,6 +4,7 @@
   src: url('../fonts/ofont.ru_Adventure Indiana.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -11,6 +12,7 @@
   src: url('../fonts/Cakra-Normal.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 /* Reset-ish */
@@ -1319,10 +1321,10 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   background: var(--tech-blue);
   border-radius: 50%;
   border: 2px solid white;
-  animation: pulse 2s infinite;
+  animation: pulse-dot 2s infinite;
 }
 
-@keyframes pulse {
+@keyframes pulse-dot {
   0% {
     box-shadow: 0 0 0 0 rgba(30, 144, 255, 0.7);
   }
@@ -2717,4 +2719,24 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   .blueprint-desc {
     font-size: 14px !important;
   }
+}
+
+/* Performance: respect reduced motion for sensitive users */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Performance: virtualize offscreen sections to speed up initial render */
+#services,
+#plans,
+#cases,
+#about,
+#faq,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
