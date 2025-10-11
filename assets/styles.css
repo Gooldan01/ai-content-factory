@@ -128,7 +128,7 @@ body {
 
 /* Services section - reduce top padding */
 #services {
-  padding-top: 10px;
+  padding-top: 90px;
 }
 /* Чередование фонов */
 .section.alt { background: linear-gradient(180deg, rgba(124,92,255,0.05) 0%, rgba(34,211,238,0.05) 100%); }
@@ -2105,7 +2105,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
     0 8px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  height: 450px;
+  height: 500px;
 }
 
 /* Global grid overlay for all slides */
@@ -2234,7 +2234,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   letter-spacing: 1px;
   color: #7C5CFF;
   background: rgba(124, 92, 255, 0.1);
-  padding: 8px 20px;
+  padding: 12px 20px;
   border-radius: 20px;
   margin-bottom: 16px;
 }
@@ -2554,7 +2554,7 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
   border-radius: 14px;
   font-weight: 900;
   letter-spacing: 2px;
-  padding: 10px 28px !important;
+  padding: 10px 100px !important;
   text-transform: uppercase;
   box-shadow: 0 2px 0 #000000, 0 8px 20px rgba(0,0,0,.08);
 }
@@ -2663,11 +2663,11 @@ h3 { font-size: 22px; margin: 0 0 12px; font-weight: 600; letter-spacing: -0.01e
 
 /* Additional stamp styles */
 .stamp-brief {
-  color: #1f2937; /* gray-800 */
-  border-color: #1f2937;
-  background: linear-gradient(135deg, rgba(31,41,55,.06), rgba(31,41,55,.12));
+  color: #0891B2; /* cyan-600 */
+  border-color: #0891B2;
+  background: linear-gradient(135deg, rgba(34,211,238,.06), rgba(8,145,178,.12));
 }
-.stamp-brief::before { border-color: #1f2937; }
+.stamp-brief::before { border-color: #0891B2; }
 
 .stamp-prep {
   color: #2563eb; /* blue-600 */

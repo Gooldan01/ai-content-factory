@@ -32,6 +32,7 @@ navLinks.forEach(link => {
   link.addEventListener('click', closeMenu);
 });
 
+
 // Phone widget click handler
 document.addEventListener('DOMContentLoaded', function() {
   const phoneBtn = document.querySelector('.phone-btn');
