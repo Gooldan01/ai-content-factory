@@ -426,4 +426,212 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// ============================================
+// MODULAR PRICING CALCULATOR
+// ============================================
+(function () {
+  const cards = document.querySelectorAll('.amf-card');
+  const modulesTotalEl = document.getElementById('modulesTotal');
+  const discountNote = document.getElementById('discountNote');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const tierModal = document.getElementById('contentTierModal');
+  const tierClose = document.getElementById('contentTierClose');
+  const tierCancel = document.getElementById('contentTierCancel');
+  const leadModal = document.getElementById('leadModal');
+  const leadClose = document.getElementById('leadClose');
+  const leadCancel = document.getElementById('leadCancel');
+  const leadForm = document.getElementById('leadForm');
+
+  if (!cards.length) return; // Если элементов нет, выходим
+
+  function format(num) {
+    return num.toLocaleString('ru-RU') + ' ₽/мес';
+  }
+
+  function discountByCount(count) {
+    if (count >= 4) return 0.20; // 4–5 модулей — 20%
+    if (count === 3) return 0.15; // 3 модуля — 15%
+    if (count === 2) return 0.10; // 2 модуля — 10%
+    return 0;
+  }
+
+  let latestPayload = { modules: [], monthly_total: 0 };
+
+  function update() {
+    let picked = [];
+    let sum = 0;
+
+    cards.forEach(card => {
+      const pick = card.querySelector('.amf-pick');
+      const moduleKey = card.dataset.module;
+
+      if (moduleKey === 'content') {
+        // Модуль контента — выбирается только при чекбоксе
+        const radios = card.querySelectorAll('input[name="contentTier"]');
+        const priceEl = card.querySelector('.amf-price');
+        
+        // Обновляем отображаемую цену в зависимости от выбранного тарифа
+        const active = card.querySelector('input[name="contentTier"]:checked');
+        const currentPrice = Number(active?.dataset.price || 70000);
+        if (priceEl) {
+          const tierName = active?.value || 'lite';
+          const tierText = tierName === 'lite' ? 'от' : '';
+          priceEl.textContent = `${tierText} ${currentPrice.toLocaleString('ru-RU')} ₽/мес`.trim();
+        }
+        
+        if (pick.checked) {
+          const price = currentPrice;
+          sum += price;
+          picked.push(`Потоковый контент: ${active.value.toUpperCase()} (${price.toLocaleString('ru-RU')} ₽)`);
+          card.classList.add('is-picked');
+        } else {
+          card.classList.remove('is-picked');
+        }
+        
+        // Блокируем radio внутри карточки; выбор тарифа теперь через модалку
+        radios.forEach(r => r.disabled = true);
+        // Раньше затемняли карточку при невыбранном состоянии — теперь всегда как остальные
+        card.style.opacity = 1;
+      } else {
+        // Обычные модули с фикс ценой
+        if (pick.checked) {
+          const price = Number(card.dataset.base || 0);
+          sum += price;
+          picked.push(`${card.dataset.name} (${price.toLocaleString('ru-RU')} ₽)`);
+          card.classList.add('is-picked');
+        } else {
+          card.classList.remove('is-picked');
+        }
+      }
+    });
+
+    // Скидка по количеству модулей
+    const count = picked.length;
+    const d = discountByCount(count);
+    const discounted = Math.round(sum * (1 - d));
+
+    modulesTotalEl.textContent = format(discounted);
+    discountNote.textContent = `Скидка за комплект: ${Math.round(d * 100)}%`;
+
+    latestPayload = { modules: picked, monthly_total: discounted };
+
+    // Открытие формы заявки
+    ctaBtn.onclick = () => {
+      if (picked.length === 0) {
+        alert('Выберите хотя бы один модуль');
+        return;
+      }
+      leadModal?.classList.add('is-open');
+      leadModal?.setAttribute('aria-hidden', 'false');
+    };
+  }
+
+  // Навешиваем обработчики
+  document.querySelectorAll('.amf-pick').forEach(el => el.addEventListener('change', update));
+  document.querySelectorAll('input[name="contentTier"]').forEach(el => el.addEventListener('change', update));
+
+  // Инициализация: блокируем radio у контента (используем модалку)
+  (function initContentLock(){
+    const content = document.querySelector('[data-module="content"]');
+    if (!content) return;
+    const pick = content.querySelector('.amf-pick');
+    const radios = content.querySelectorAll('input[name="contentTier"]');
+    radios.forEach(r => r.disabled = true);
+    // Больше не затемняем карточку по умолчанию
+    content.style.opacity = 1;
+  })();
+
+  // Открытие модалки при выборе контент-модуля
+  document.addEventListener('change', (e) => {
+    const target = e.target;
+    if (!(target instanceof HTMLInputElement)) return;
+    if (!target.classList.contains('amf-pick')) return;
+
+    const card = target.closest('.amf-card');
+    if (!card) return;
+    const isContent = card.dataset.module === 'content';
+    if (!isContent) return;
+
+    if (target.checked) {
+      tierModal?.classList.add('is-open');
+      tierModal?.setAttribute('aria-hidden', 'false');
+    } else {
+      tierModal?.classList.remove('is-open');
+      tierModal?.setAttribute('aria-hidden', 'true');
+      // Сняли выбор — восстанавливаем базовое состояние цены
+      const priceEl = card.querySelector('.amf-price');
+      if (priceEl) priceEl.textContent = `от ${format(70000).replace(' /мес','')}`;
+    }
+  });
+
+  // Выбор тарифа в модалке
+  tierModal?.addEventListener('click', (e) => {
+    const btn = e.target.closest('.amf-tier-btn');
+    if (!btn) return;
+    const tier = btn.getAttribute('data-tier');
+    const price = Number(btn.getAttribute('data-price')) || 70000;
+
+    const contentCard = document.querySelector('.amf-card[data-module="content"]');
+    if (!contentCard) return;
+    // Проставляем radio внутри карточки (скрытые) для совместимости с остальной логикой
+    const radio = contentCard.querySelector(`input[name="contentTier"][value="${tier}"]`);
+    if (radio) radio.checked = true;
+
+    // Обновляем цену в карточке сразу
+    const priceEl = contentCard.querySelector('.amf-price');
+    if (priceEl) priceEl.textContent = `${price.toLocaleString('ru-RU')} ₽/мес`;
+
+    // Закрываем модалку и пересчитываем итог
+    tierModal.classList.remove('is-open');
+    tierModal.setAttribute('aria-hidden', 'true');
+    update();
+  });
+
+  // Закрытие модалки
+  function closeModal() {
+    tierModal?.classList.remove('is-open');
+    tierModal?.setAttribute('aria-hidden', 'true');
+  }
+  tierClose?.addEventListener('click', closeModal);
+  tierCancel?.addEventListener('click', closeModal);
+  tierModal?.addEventListener('click', (e) => {
+    if (e.target === tierModal) closeModal();
+  });
+
+  // Работа с формой заявки
+  function closeLeadModal() {
+    leadModal?.classList.remove('is-open');
+    leadModal?.setAttribute('aria-hidden', 'true');
+  }
+
+  leadClose?.addEventListener('click', closeLeadModal);
+  leadCancel?.addEventListener('click', closeLeadModal);
+  leadModal?.addEventListener('click', (e) => {
+    if (e.target === leadModal) closeLeadModal();
+  });
+
+  leadForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Можно интегрировать отправку на сервер здесь
+    // Подготовим текст заявки (вставим состав модулей)
+    const text = `Заявка на расчёт:\n\nМодули:\n${latestPayload.modules.join('\n')}` +
+      `\n\nИтого: ${(latestPayload.monthly_total).toLocaleString('ru-RU')} ₽/мес`;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      }
+    } catch {}
+    const originalText = ctaBtn.textContent;
+    ctaBtn.textContent = 'Отправлено';
+    ctaBtn.style.background = 'linear-gradient(135deg, #22C55E, #16A34A)';
+    setTimeout(() => {
+      ctaBtn.textContent = originalText;
+      ctaBtn.style.background = '';
+    }, 2200);
+    closeLeadModal();
+  });
+
+  update();
+})();
+
 

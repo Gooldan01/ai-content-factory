@@ -93,8 +93,8 @@
               </div>
             </div>
             <div class="card-content">
-              <h3>Автоматизация и доступность</h3>
-              <p>Маркетинг выходит за рамки ручного продакшна и дорогих подрядчиков.</p>
+              <h3>Автоматизация процессов</h3>
+              <p>Маркетинг выходит за рамки ручного продакшна, постинга и дорогих подрядчиков.</p>
               <div class="card-stats">
                 <div class="stat-row">
                   <div class="stat">
@@ -137,7 +137,7 @@
 
           <div class="progress-card step-3">
             <div class="card-header">
-              <div class="step-tag">Perpetual</div>
+              <div class="step-tag">ТРЕНДЫ</div>
               <div class="step-icon">
                 <img src="assets/icons/data-flow.svg" alt="Поток данных" loading="lazy" decoding="async" width="40" height="40" />
               </div>
@@ -162,7 +162,7 @@
 
           <div class="progress-card step-4">
             <div class="card-header">
-              <div class="step-tag">Fixed</div>
+              <div class="step-tag">ВЛИЯНИЕ</div>
               <div class="step-icon">
                 <img src="assets/icons/unified.svg" alt="Стратегия" loading="lazy" decoding="async" width="40" height="40" />
               </div>
@@ -212,6 +212,43 @@
         </div>
       </div>
     </section>
+
+    <!-- Modal: Тариф контента -->
+    <div class="amf-modal-overlay" id="contentTierModal" aria-hidden="true">
+      <div class="amf-modal" role="dialog" aria-modal="true" aria-labelledby="contentTierTitle">
+        <button class="amf-modal-close" type="button" id="contentTierClose" aria-label="Закрыть">×</button>
+        <h3 class="amf-modal-title" id="contentTierTitle">Выберите тариф «Потоковый контент»</h3>
+        <div class="amf-tier-grid">
+          <button class="amf-tier-btn" data-tier="lite" data-price="70000"><span>Lite — 10 видео/мес</span> <em>70 000 ₽</em></button>
+          <button class="amf-tier-btn" data-tier="pro" data-price="150000"><span>Pro — 30 видео/мес</span> <em>150 000 ₽</em></button>
+          <button class="amf-tier-btn" data-tier="max" data-price="250000"><span>Max — 80+ видео/мес</span> <em>250 000 ₽</em></button>
+        </div>
+        <div class="amf-modal-actions">
+          <button class="amf-modal-cancel" type="button" id="contentTierCancel">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Оставить заявку -->
+    <div class="amf-modal-overlay" id="leadModal" aria-hidden="true">
+      <div class="amf-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+        <button class="amf-modal-close" type="button" id="leadClose" aria-label="Закрыть">×</button>
+        <h3 class="amf-modal-title" id="leadModalTitle">Оставить заявку</h3>
+        <form id="leadForm">
+          <div class="amf-tier-grid">
+            <input class="input" id="leadName" name="name" placeholder="Имя" required />
+            <input class="input" id="leadContact" name="contact" placeholder="Телефон / Email / Telegram" required />
+          </div>
+          <div class="amf-modal-actions" style="justify-content: space-between; align-items: center; gap: 10px;">
+            <div class="xsmall muted">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</div>
+            <div>
+              <button class="amf-modal-cancel" type="button" id="leadCancel">Отмена</button>
+              <button class="amf-cta" type="submit" style="margin-left: 8px;">Отправить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Services -->
     <section id="services" class="section bg-grid-light slab unified-height">
@@ -276,14 +313,14 @@
               <div class="gallery-slide">
                 <div class="slide-content">
                   <div class="slide-number blueprint-badge"><span>ДЕЙСТВИЕ 4</span></div>
-                  <h3 class="slide-title blueprint-title">Запуск и поддержка</h3>
+                  <h3 class="slide-title blueprint-title">Запуск и адаптация</h3>
                   
                   <!-- Stamp: Launched -->
                   <div class="approval-stamp">
-                    <div class="stamp stamp-live">ЗАПУЩЕНО</div>
+                    <div class="stamp stamp-live">СТАРТ</div>
                   </div>
                   
-                  <p class="slide-description blueprint-desc">Включаем систему и начинаем отслеживать результаты. Поддерживаем технически и экспертно, дорабатывая на основе полученных данных.</p>
+                  <p class="slide-description blueprint-desc">Включаем систему и начинаем отслеживать результаты. Поддерживаем технически и экспертно, в случае необходимости дорабатываем.</p>
                 </div>
               </div>
 
@@ -291,14 +328,14 @@
               <div class="gallery-slide">
                 <div class="slide-content">
                   <div class="slide-number blueprint-badge"><span>ДЕЙСТВИЕ 5</span></div>
-                  <h3 class="slide-title blueprint-title">Аналитика по результатам</h3>
+                  <h3 class="slide-title blueprint-title">Аналитика и цифры</h3>
                   
                   <!-- Stamp: Report ready -->
                   <div class="approval-stamp">
-                    <div class="stamp stamp-report">ОТЧЕТ ГОТОВ</div>
+                    <div class="stamp stamp-report">Мониторинг</div>
                   </div>
                   
-                  <p class="slide-description blueprint-desc">Отслеживайте эффективность и оптимизируйте непрерывно с помощью наших инструментов</p>
+                  <p class="slide-description blueprint-desc">Отслеживайте эффективность, оценивайте результаты и оптимизируйте непрерывно с помощью наших инструментов.</p>
                 </div>
               </div>
             </div>
@@ -333,195 +370,171 @@
       </div>
     </section>
 
-    <!-- Plans -->
-    <section id="plans" class="section dark bg-grid-dark slab unified-height">
+    <!-- Plans: Модульная тарификация -->
+    <section id="plans" class="section dark bg-grid-dark slab">
       <div class="container">
-        <h2>Тарифы</h2>
-    
-        
-        <div class="pricing-grid">
-          <!-- Starter Plan -->
-          <div class="pricing-card">
-            <div class="plan-header">
-              <div class="plan-title">1 МОДУЛЬ</div>
-            </div>
-            <div class="plan-price">
-              <span class="price-amount">70 000</span>
-              <span class="price-unit">₽ / месяц</span>
-            </div>
-            <div class="plan-description">
-              1 ЛЮБОЙ модуль  на выбор. Достаточно для того, чтобы увидеть наш подход и понять глубину работы.
-            </div>
-            
-            <div class="features-list">
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>10 видео в месяц</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Сценарии</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Базовая дистрибуция</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Еженедельный отчёт</span>
-              </div>
-            </div>
-            
-            <div class="plan-footer">
-              <div class="testimonial">Так начали: Skillbox, Нетология</div>
-              <button class="plan-button">Выбрать Starter</button>
-            </div>
-          </div>
+        <header class="amf-head">
+          <h2>Модульная тарификация</h2>
+          <p class="sub">Выбирайте только нужные модули. Видео включается <strong>только</strong> при выборе модуля «Потоковый контент».</p>
+        </header>
 
-          <!-- Growth Plan -->
-          <div class="pricing-card popular">
-            <div class="plan-header">
-              <div class="plan-title">3 МОДУЛЯ</div>
-              <div class="popular-badge">Популярный</div>
+        <!-- Сетка модулей -->
+        <div class="amf-grid">
+          <!-- Потоковый контент (видео) -->
+          <article class="amf-card" data-module="content" data-base="70000" data-name="Потоковый контент">
+            <div class="amf-card-head">
+              <h3>Потоковый контент</h3>
+              <p class="amf-sub">Единственный модуль, который включает видеопродакшн.</p>
             </div>
-            <div class="plan-price">
-              <span class="price-amount">150 000</span>
-              <span class="price-unit">₽ / месяц</span>
+            <div class="amf-divider"></div>
+            <div class="amf-content-body">
+              <div class="amf-variant">
+                <label class="amf-radio">
+                  <input type="radio" name="contentTier" value="lite" data-price="70000" checked />
+                  <span>
+                    <b>Lite</b> — 10 видео/мес
+                    <em>70 000 ₽</em>
+                  </span>
+                </label>
+                <label class="amf-radio">
+                  <input type="radio" name="contentTier" value="pro" data-price="150000" />
+                  <span>
+                    <b>Pro</b> — 30 видео/мес
+                    <em>150 000 ₽</em>
+                  </span>
+                </label>
+                <label class="amf-radio">
+                  <input type="radio" name="contentTier" value="max" data-price="250000" />
+                  <span>
+                    <b>Max</b> — 80+ видео/мес
+                    <em>250 000 ₽</em>
+                  </span>
+                </label>
+              </div>
+              <ul class="amf-features">
+                <li>Сценарии, монтаж</li>
+                <li>Версии под соцсети</li>
+                <li>Контент‑план</li>
+              </ul>
             </div>
-            
-            <div class="features-list">
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>30 видео в месяц</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>A/B-тесты креативов</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Омниканальная дистрибуция</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Еженедельные отчёты</span>
-              </div>
-            </div>
-            
-            <div class="additional-section">
-              <div class="additional-title">Дополнительные возможности</div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Персональный менеджер</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Приоритетная поддержка</span>
-              </div>
-            </div>
-            
-            <div class="plan-footer">
-              <div class="testimonial">Так масштабировались: Яндекс.Практикум, GeekBrains</div>
-              <button class="plan-button">Выбрать Growth</button>
-            </div>
-          </div>
+            <footer class="amf-card-foot">
+              <div class="amf-price">от 70 000 ₽/мес</div>
+              <label class="amf-check">
+                <input type="checkbox" class="amf-pick" />
+                <span>Выбрать модуль</span>
+              </label>
+            </footer>
+          </article>
 
-          <!-- Scale Plan -->
-          <div class="pricing-card">
-            <div class="plan-header">
-              <div class="plan-title">Маркетинг-завод</div>
+          <!-- Трендвотчинг -->
+          <article class="amf-card" data-module="trends" data-base="80000" data-name="Трендвотчинг">
+            <div class="amf-card-head">
+              <h3>Трендвотчинг</h3>
+              <p class="amf-sub">Еженедельный дайджест трендов + банк идей/сценариев. Без продакшна видео.</p>
             </div>
-            <div class="plan-price">
-              <span class="price-amount">250 000</span>
-              <span class="price-unit">₽ / месяц</span>
+            <div class="amf-divider"></div>
+            <div class="amf-content-body">
+              <ul class="amf-features">
+                <li>Скан всех соцсетей</li>
+                <li>Отбор форматов под вашу ЦА</li>
+                <li>10–20 идей/неделю</li>
+              </ul>
             </div>
-            
-            
-            <div class="features-list">
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>80+ видео в месяц</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Автоматизация постинга</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Индивидуальные пайплайны</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Приоритетная поддержка</span>
-              </div>
+            <footer class="amf-card-foot">
+              <div class="amf-price">80 000 ₽/мес</div>
+              <label class="amf-check">
+                <input type="checkbox" class="amf-pick" />
+                <span>Выбрать модуль</span>
+              </label>
+            </footer>
+          </article>
+
+          <!-- Инфлюенс -->
+          <article class="amf-card" data-module="influence" data-base="70000" data-name="Инфлюенс‑аналитика">
+            <div class="amf-card-head">
+              <h3>Лидеры мнений</h3>
+              <p class="amf-sub">Скоринг 50 000+ блогеров, shortlist лидеров мнений и рекомендации по интеграциям.</p>
             </div>
-            
-            <div class="additional-section">
-              <div class="additional-title">Как мы работаем</div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Оплата в два этапа</span>
-              </div>
-              <div class="feature-item included">
-                <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16">
-                  <circle cx="8" cy="8" r="7" fill="#000"/>
-                  <path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>Гарантия результата</span>
-              </div>
+            <div class="amf-divider"></div>
+            <div class="amf-content-body">
+              <ul class="amf-features">
+                <li>Подбор по 25+ параметрам</li>
+                <li>Готовые брифы для блогеров</li>
+                <li>Анти‑бот фильтры</li>
+              </ul>
             </div>
-            
-            <div class="plan-footer">
-              <div class="testimonial">Так автоматизировали: Ozon, Wildberries</div>
-              <button class="plan-button">Запросить КП</button>
+            <footer class="amf-card-foot">
+              <div class="amf-price">70 000 ₽/мес</div>
+              <label class="amf-check">
+                <input type="checkbox" class="amf-pick" />
+                <span>Выбрать модуль</span>
+              </label>
+            </footer>
+          </article>
+
+          <!-- Аналитика -->
+          <article class="amf-card" data-module="analytics" data-base="50000" data-name="Аналитика & отчётность">
+            <div class="amf-card-head">
+              <h3>Аналитика & отчётность</h3>
+              <p class="amf-sub">Ключевые метрики, управление маркетингом на основе цифр.</p>
             </div>
+            <div class="amf-divider"></div>
+            <div class="amf-content-body">
+              <ul class="amf-features">
+                <li>Конверсии, охваты, вовлеченность</li>
+                <li>Еженедельный отчёт</li>
+                <li>Гипотезы оптимизации</li>
+              </ul>
+            </div>
+            <footer class="amf-card-foot">
+              <div class="amf-price">50 000 ₽/мес</div>
+              <label class="amf-check">
+                <input type="checkbox" class="amf-pick" />
+                <span>Выбрать модуль</span>
+              </label>
+            </footer>
+          </article>
+
+          <!-- Автоматизация процессов -->
+          <article class="amf-card" data-module="evolution" data-base="80000" data-name="Автоматизация процессов">
+            <div class="amf-card-head">
+              <h3>Автоматизация процессов</h3>
+              <p class="amf-sub">Настройка пайплайна, интеграции. Без продакшна видео.</p>
+            </div>
+            <div class="amf-divider"></div>
+            <div class="amf-content-body">
+              <ul class="amf-features">
+                <li>Настройка автоматизации под процессы</li>
+                <li>Интеграции, боты, пайплайны</li>
+                <li>Обучение команды</li>
+              </ul>
+            </div>
+            <footer class="amf-card-foot">
+              <div class="amf-price">80 000 ₽/мес</div>
+              <label class="amf-check">
+                <input type="checkbox" class="amf-pick" />
+                <span>Выбрать модуль</span>
+              </label>
+            </footer>
+          </article>
+        </div>
+
+        <!-- Суммарная панель -->
+        <div class="amf-summary" aria-live="polite">
+          <div class="amf-summary-left">
+            <div class="amf-total-line">
+              <span class="amf-total-label">Итого за модули:</span>
+              <span class="amf-total-value" id="modulesTotal">0 ₽/мес</span>
+            </div>
+            <div class="amf-discount" id="discountNote">Скидка за комплект: 0%</div>
+          </div>
+          <div class="amf-summary-right">
+            <button class="amf-cta" id="ctaBtn">Оставить заявку</button>
+            <small>Мы пришлём расчёт и скопируем состав модулей</small>
           </div>
         </div>
+
+        <p class="amf-legal">* Доп. видео сверх пакета: shorts — 3 000 ₽/шт, 30–60 с — 6 000 ₽/шт, 60–120 с — 10 000 ₽/шт. Экспресс‑TAT 48 ч: +20%.</p>
       </div>
     </section>
 
