@@ -36,6 +36,10 @@ build/
 
 # Environment Variables
 .env
+.env*
+/api/.env
+/api/env
+/api/*.env
 .env.local
 .env.development.local
 .env.test.local
@@ -44,6 +48,7 @@ build/
 # Logs
 logs/
 *.log
+/api/submissions.log
 
 # Temporary Files
 *.tmp
