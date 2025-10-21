@@ -231,21 +231,19 @@
 
     <!-- Modal: Оставить заявку -->
     <div class="amf-modal-overlay" id="leadModal" aria-hidden="true">
-      <div class="amf-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+      <div class="amf-modal amf-modal-lead" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
         <button class="amf-modal-close" type="button" id="leadClose" aria-label="Закрыть">×</button>
-        <h3 class="amf-modal-title" id="leadModalTitle">Оставить заявку</h3>
-        <form id="leadForm">
-          <div class="amf-tier-grid">
-            <input class="input" id="leadName" name="name" placeholder="Имя" required />
-            <input class="input" id="leadContact" name="contact" placeholder="Телефон / Email / Telegram" required />
-          </div>
-          <div class="amf-modal-actions" style="justify-content: space-between; align-items: center; gap: 10px;">
-            <div class="xsmall muted">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</div>
-            <div>
-              <button class="amf-modal-cancel" type="button" id="leadCancel">Отмена</button>
-              <button class="amf-cta" type="submit" style="margin-left: 8px;">Отправить</button>
-            </div>
-          </div>
+        <h3 class="amf-modal-title" id="leadModalTitle">Расскажите, кто вам нужен</h3>
+        <p class="amf-modal-subtitle">Заполните форму и мы оперативно свяжемся с вами</p>
+        <form id="leadForm" class="lead-form">
+          <input class="lead-input" id="leadContact" name="contact" placeholder="Ваше имя" required />
+          <input class="lead-input" id="leadEmail" name="email" placeholder="Телеграм / Email / Телефон" />
+          <textarea class="lead-textarea" id="leadMessage" name="message" placeholder="Опишите, кто вам нужен и под какие задачи" rows="4"></textarea>
+          <label class="lead-checkbox">
+            <input type="checkbox" required />
+            <span>Я согласен с <a href="privacy.html" class="privacy-link">политикой конфиденциальности</a></span>
+          </label>
+          <button class="lead-submit" type="submit">Отправить заявку</button>
         </form>
       </div>
     </div>
@@ -375,7 +373,7 @@
       <div class="container">
         <header class="amf-head">
           <h2>Модульная тарификация</h2>
-          <p class="sub">Выбирайте только нужные модули. Видео включается <strong>только</strong> при выборе модуля «Потоковый контент».</p>
+          <p class="sub"><strong>Только</strong> самое необходимое - без лишнего функционала.</p>
         </header>
 
         <!-- Сетка модулей -->
@@ -596,7 +594,7 @@
             <input class="input" id="contact" name="contact" placeholder="Телефон / Email / Telegram" required />
           </div>
           <button class="btn btn-primary btn-glossy big-cta">Записаться на консультацию</button>
-          <p class="xsmall muted">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+          <p class="xsmall muted">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" class="privacy-link">политикой конфиденциальности</a>.</p>
         </form>
       </div>
     </section>
@@ -635,7 +633,7 @@
           <h4>Компания</h4>
           <nav>
             <a href="#">О нас</a>
-            <a href="#">Политика конфиденциальности</a>
+            <a href="privacy.html">Политика конфиденциальности</a>
             <a href="#">Условия использования</a>
           </nav>
         </div>
