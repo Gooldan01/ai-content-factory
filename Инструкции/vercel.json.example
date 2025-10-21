@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "<SET_IN_VERCEL_DASHBOARD>",
+    "TELEGRAM_CHAT_ID": "<SET_IN_VERCEL_DASHBOARD>"
+  },
+  "builds": [
+    {
+      "src": "api/telegram.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/telegram",
+      "dest": "api/telegram.js"
+    }
+  ]
+}
+

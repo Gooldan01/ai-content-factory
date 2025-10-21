@@ -1,0 +1,26 @@
+{
+  "name": "telegram-api",
+  "version": "1.0.0",
+  "description": "Secure Telegram Bot API endpoint",
+  "main": "telegram.js",
+  "scripts": {
+    "start": "node telegram.js",
+    "dev": "nodemon telegram.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "api",
+    "serverless"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+

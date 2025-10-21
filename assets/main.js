@@ -420,9 +420,45 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.querySelector('form.modern-contact');
   if (!form) return;
-  form.addEventListener('submit', function(e) {
+  
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    alert('Форма демо. Подключим отправку позже.');
+    
+    // Получаем данные из формы
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const contact = formData.get('contact');
+    
+    // Формируем данные для API
+    const data = {
+      type: 'consultation',
+      name: name,
+      contact: contact
+    };
+    
+    // Отправляем через безопасный API
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+    
+    const success = await sendToTelegram(data);
+    
+    if (success) {
+      submitBtn.textContent = '✓ ОТПРАВЛЕНО';
+      submitBtn.style.background = 'linear-gradient(135deg, #22C55E, #16A34A)';
+      
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.style.background = '';
+        submitBtn.disabled = false;
+        form.reset();
+      }, 2500);
+    } else {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Произошла ошибка при отправке. Попробуйте позже или свяжитесь с нами напрямую.');
+    }
   });
 });
 
@@ -610,28 +646,123 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === leadModal) closeLeadModal();
   });
 
-  leadForm?.addEventListener('submit', (e) => {
+  leadForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    // Можно интегрировать отправку на сервер здесь
-    // Подготовим текст заявки (вставим состав модулей)
-    const text = `Заявка на расчёт:\n\nМодули:\n${latestPayload.modules.join('\n')}` +
-      `\n\nИтого: ${(latestPayload.monthly_total).toLocaleString('ru-RU')} ₽/мес`;
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text);
-      }
-    } catch {}
-    const originalText = ctaBtn.textContent;
-    ctaBtn.textContent = 'Отправлено';
-    ctaBtn.style.background = 'linear-gradient(135deg, #22C55E, #16A34A)';
-    setTimeout(() => {
-      ctaBtn.textContent = originalText;
-      ctaBtn.style.background = '';
-    }, 2200);
-    closeLeadModal();
+    
+    // Получаем данные из формы
+    const formData = new FormData(leadForm);
+    const contact = formData.get('contact');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    
+    // Формируем данные для API
+    const data = {
+      type: 'lead',
+      contact: contact,
+      email: email || '',
+      message: message || '',
+      modules: latestPayload.modules,
+      total: latestPayload.modules.length > 0 
+        ? `${(latestPayload.monthly_total).toLocaleString('ru-RU')} ₽/мес` 
+        : ''
+    };
+    
+    // Отправляем через безопасный API
+    const submitBtn = leadForm.querySelector('.lead-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+    
+    const success = await sendToTelegram(data);
+    
+    if (success) {
+      // Успешная отправка
+      submitBtn.textContent = '✓ ОТПРАВЛЕНО';
+      submitBtn.style.background = 'linear-gradient(135deg, #22C55E, #16A34A)';
+      submitBtn.disabled = false;
+      
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.style.background = '';
+        leadForm.reset();
+        closeLeadModal();
+      }, 2000);
+    } else {
+      // Ошибка отправки
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Произошла ошибка при отправке. Попробуйте позже или свяжитесь с нами напрямую.');
+    }
   });
 
   update();
 })();
 
+// ============================================
+// TELEGRAM BOT INTEGRATION (SECURE VERSION)
+// ============================================
+
+// ВАЖНО: Укажите URL вашего серверного endpoint
+// Пример для разных платформ:
+// - Обычный хостинг: '/api/telegram.php'
+// - Vercel: '/api/telegram'
+// - Netlify: '/.netlify/functions/telegram'
+const API_ENDPOINT = '/api/telegram.php';  // 👈 Измените на свой путь!
+
+/**
+ * Безопасная отправка данных через серверный endpoint
+ * @param {Object} data - Данные формы
+ * @returns {Promise<boolean>} - true если успешно, false если ошибка
+ */
+async function sendToTelegram(data) {
+  try {
+    const response = await fetch(API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      console.log('✅ Заявка успешно отправлена');
+      return true;
+    } else {
+      console.error('❌ Ошибка сервера:', result.error || 'Unknown error');
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Ошибка при отправке:', error);
+    return false;
+  }
+}
+
+// Экспорт для использования в других частях кода
+window.sendToTelegram = sendToTelegram;
+
+
+// ============================================
+// OPEN LEAD MODAL FROM HEADER/HERO
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+  const leadModal = document.getElementById('leadModal');
+  if (!leadModal) return;
+
+  function openLead(e) {
+    e.preventDefault();
+    leadModal.classList.add('is-open');
+    leadModal.setAttribute('aria-hidden', 'false');
+  }
+
+  // Hero CTA button
+  const heroCta = document.querySelector('#hero .btn-premium');
+  // Header CTA button
+  const headerCta = document.querySelector('.site-header .btn.btn-primary');
+
+  [heroCta, headerCta].forEach((el) => {
+    if (el) el.addEventListener('click', openLead);
+  });
+});
 

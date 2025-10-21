@@ -1,0 +1,32 @@
+# ============================================
+# Защита API endpoint
+# ============================================
+
+# Разрешить только POST запросы к telegram.php
+<Files "telegram.php">
+    # Ограничение методов
+    <LimitExcept POST OPTIONS>
+        Order deny,allow
+        Deny from all
+    </LimitExcept>
+    
+    # Дополнительные заголовки безопасности
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+</Files>
+
+# Запретить доступ к .log файлам
+<FilesMatch "\.(log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Защита от просмотра директории
+Options -Indexes
+
+# Ограничение размера тела запроса (10KB достаточно для форм)
+LimitRequestBody 10240
+
+SetEnv TELEGRAM_BOT_TOKEN "7826239753:AAGa9LqO8JFY9nEhup85GUakldSzqIGQ-7g"
+SetEnv TELEGRAM_CHAT_ID "326230827"
